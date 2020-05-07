@@ -10,8 +10,8 @@ import com.mygdx.game.Screens.PlayScreen;
 
 public class MyGdxGame extends Game {
 
-	public static final float WIDTH = 200.0f;
-	public static final float HEIGHT = 300.0f;
+	public static final float WIDTH = 720.0f;
+	public static final float HEIGHT = 1080.0f;
 	
 	@Override
 	public void create () {

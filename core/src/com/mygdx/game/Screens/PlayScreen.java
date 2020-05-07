@@ -10,8 +10,10 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.Objects.Nave;
 
 import javax.swing.Renderer;
 
@@ -27,8 +29,7 @@ public class PlayScreen implements Screen {
     Viewport viewport;
 
     BitmapFont texto;
-
-
+    Nave nave;
 
     public PlayScreen(MyGdxGame game)
     {
@@ -43,8 +44,10 @@ public class PlayScreen implements Screen {
         viewport = new FitViewport(MyGdxGame.WIDTH, MyGdxGame.HEIGHT, camera);
 
         texto = new BitmapFont();
-        texto.getData().setScale(2);
+        texto.getData().setScale(3);
         texto.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
+        nave = new Nave(viewport);
 
     }
     @Override
@@ -54,20 +57,24 @@ public class PlayScreen implements Screen {
 
     @Override
     public void render(float delta) {
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
         viewport.apply();
         camera.update();
 
-      //  game.batch.setProjectionMatrix(camera.combined);
         renderer.setProjectionMatrix(viewport.getCamera().combined);
         batch.setProjectionMatrix(viewport.getCamera().combined);
 
         batch.begin();
-        texto.draw(batch,"VIDAS" ,20,30);
+
         batch.draw(texture,0,0);
+        texto.draw(batch,"VIDAS: " ,10, MyGdxGame.HEIGHT - 10);
+
         batch.end();
+
+        nave.render(delta);
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
         {
@@ -93,9 +100,6 @@ public class PlayScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        camera.viewportHeight = MyGdxGame.HEIGHT;
-        camera.viewportWidth = MyGdxGame.WIDTH;
-        camera.position.set(0,0,0);
         viewport.update(width,height,true);
     }
 
