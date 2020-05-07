@@ -1,0 +1,4 @@
+#Wed May 06 18:03:08 COT 2020
+base.0=C\:\\Users\\yordy\\Desktop\\Cursos\\Android Studio\\LibGDX\\android\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
+path.0=classes.dex
+renamed.0=classes.dex
