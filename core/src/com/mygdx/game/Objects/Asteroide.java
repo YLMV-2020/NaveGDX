@@ -12,17 +12,14 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Controllers.C_Asteroide;
 import com.mygdx.game.MyGdxGame;
 
 public class Asteroide {
 
-    public static final int U = 16;
-    public static final int V = 2;
-
     SpriteBatch batch;
     Texture texture;
 
-    private TextureRegion region[][];
 
     boolean state;
     float power;
@@ -35,21 +32,19 @@ public class Asteroide {
     {
         this.viewport = viewport;
         batch = new SpriteBatch();
-        texture = new Texture("nave.png");
+        texture = new Texture(Gdx.files.internal(C_Asteroide.textureRandom()));
         state = true;
         power = MathUtils.random(5, 100);
 
-        float width = MyGdxGame.WIDTH - texture.getWidth()/U;
-        float height = MyGdxGame.HEIGHT - texture.getHeight()/V;
+        float width = MyGdxGame.WIDTH - texture.getWidth();
+        float height = MyGdxGame.HEIGHT - texture.getHeight();
 
         position = new Vector2(MathUtils.random(width), height);
         rectangle = new Rectangle(10,10, texture.getWidth(), texture.getHeight());
 
         renderer = new ShapeRenderer();
 
-        texture = new Texture(Gdx.files.internal("asteroid.png"));
-        region = new TextureRegion[V][U];
-        region = TextureRegion.split(texture,texture.getWidth()/U,texture.getHeight()/V);
+
 
     }
 
@@ -78,7 +73,7 @@ public class Asteroide {
         renderer.end();
 
         batch.begin();
-        batch.draw(region[0][12], position.x, position.y);
+        batch.draw(texture, position.x, position.y);
         batch.end();
 
         Gdx.gl.glDisable(GL20.GL_BLEND);
