@@ -17,12 +17,12 @@ public class C_Asteroide {
 
     private static String path[] = {"asteroid","asteroid2","asteroid3"};
     private static Integer max[] = {32, 16, 30};
+    private static Float power[] = {10.0f, 30.0f, 50.0f};
 
     private ArrayList<Asteroide> asteroides;
     private final int TAM = 2;
 
     private long startTime = 0;
-    private long collisionTime = 0;
 
     public C_Asteroide(Viewport viewport)
     {
@@ -34,7 +34,6 @@ public class C_Asteroide {
         }
 
         startTime = TimeUtils.millis();
-        collisionTime = TimeUtils.millis();
     }
 
     public static String textureRandom()

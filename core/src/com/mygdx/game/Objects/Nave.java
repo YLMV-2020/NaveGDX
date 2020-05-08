@@ -97,6 +97,9 @@ public class Nave {
 
     public int getVidas() { return vidas; }
     public Rectangle getRectangle() { return rectangle; }
+    public Texture getTexture() { return texture; }
+    public Vector2 getPosition() { return position; }
 
     public void setVidas(int vidas) { this.vidas = vidas; }
+
 }

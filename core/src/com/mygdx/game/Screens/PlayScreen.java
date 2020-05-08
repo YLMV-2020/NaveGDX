@@ -9,11 +9,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Controllers.C_Asteroide;
+import com.mygdx.game.Controllers.C_Bala;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Objects.Asteroide;
 import com.mygdx.game.Objects.Nave;
@@ -35,6 +37,7 @@ public class PlayScreen implements Screen {
     private Nave nave;
 
     private C_Asteroide asteroides;
+    private C_Bala balas;
 
     public PlayScreen(MyGdxGame game)
     {
@@ -55,6 +58,8 @@ public class PlayScreen implements Screen {
 
         nave = new Nave(viewport);
         asteroides = new C_Asteroide(viewport);
+
+        balas = new C_Bala();
 
 
     }
@@ -83,6 +88,7 @@ public class PlayScreen implements Screen {
 
         nave.render(delta);
         asteroides.render(delta, viewport, nave);
+        balas.render(delta, viewport);
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
         {
@@ -102,6 +108,12 @@ public class PlayScreen implements Screen {
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
         {
             camera.translate(180*delta,0);
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE))
+        {
+            Texture tmp = nave.getTexture();
+            balas.addBala(viewport, nave.getPosition(), new Vector2(tmp.getWidth()/2, tmp.getHeight()/2));
         }
 
     }
