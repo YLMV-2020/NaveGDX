@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.Objects.Asteroide;
 import com.mygdx.game.Objects.Nave;
 
 import javax.swing.Renderer;
@@ -30,6 +31,7 @@ public class PlayScreen implements Screen {
 
     BitmapFont texto;
     Nave nave;
+    Asteroide asteroide;
 
     public PlayScreen(MyGdxGame game)
     {
@@ -48,6 +50,7 @@ public class PlayScreen implements Screen {
         texto.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
         nave = new Nave(viewport);
+        asteroide = new Asteroide(viewport);
 
     }
     @Override
@@ -70,11 +73,12 @@ public class PlayScreen implements Screen {
         batch.begin();
 
         batch.draw(texture,0,0);
-        texto.draw(batch,"VIDAS: " ,10, MyGdxGame.HEIGHT - 10);
+        texto.draw(batch,"VIDAS: " + nave.getVidas() ,10, MyGdxGame.HEIGHT - 10);
 
         batch.end();
 
         nave.render(delta);
+        asteroide.render(delta);
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
         {
