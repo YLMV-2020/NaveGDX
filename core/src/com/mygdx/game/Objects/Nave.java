@@ -16,17 +16,19 @@ import com.mygdx.game.MyGdxGame;
 
 public class Nave {
 
-    SpriteBatch batch;
-    Texture texture;
+    private SpriteBatch batch;
+    private Texture texture;
 
-    boolean state;
-    int vidas;
+    private boolean state;
+    private int vidas;
 
-    Rectangle rectangle;
-    Vector2 position;
+    private Rectangle rectangle;
+    private Vector2 position;
 
-    ShapeRenderer renderer;
-    Viewport viewport;
+    private ShapeRenderer renderer;
+    private Viewport viewport;
+
+    private float velocity;
 
     public Nave(Viewport viewport)
     {
@@ -38,9 +40,10 @@ public class Nave {
         rectangle = new Rectangle(10,10, texture.getWidth(), texture.getHeight());
         position = new Vector2(10,10);
         renderer = new ShapeRenderer();
+        velocity = 180.0f;
     }
 
-    public void checkPosition()
+    private void checkPosition()
     {
         float width = MyGdxGame.WIDTH - texture.getWidth();
         float height = MyGdxGame.HEIGHT - texture.getHeight();
@@ -52,12 +55,12 @@ public class Nave {
     }
 
 
-    public void update(float delta)
+    private void update(float delta)
     {
-        if(Gdx.input.isKeyPressed(Input.Keys.A)) position.x -= delta *180f;
-        if(Gdx.input.isKeyPressed(Input.Keys.D)) position.x += delta *180f;
-        if(Gdx.input.isKeyPressed(Input.Keys.W)) position.y += delta *180f;
-        if(Gdx.input.isKeyPressed(Input.Keys.S)) position.y -= delta *180f;
+        if(Gdx.input.isKeyPressed(Input.Keys.A)) position.x -= delta * velocity;
+        if(Gdx.input.isKeyPressed(Input.Keys.D)) position.x += delta * velocity;
+        if(Gdx.input.isKeyPressed(Input.Keys.W)) position.y += delta * velocity;
+        if(Gdx.input.isKeyPressed(Input.Keys.S)) position.y -= delta * velocity;
 
         checkPosition();
     }
@@ -71,20 +74,20 @@ public class Nave {
         renderer.setProjectionMatrix(viewport.getCamera().combined);
 
         update(delta);
-
         rectangle.setPosition(position);
+
         renderer.begin(ShapeRenderer.ShapeType.Line);
         renderer.setColor(new Color(0, 1, 0, 0));
+
         renderer.rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         renderer.end();
 
         batch.begin();
         batch.draw(texture, position.x, position.y);
-        batch.end();
 
+        batch.end();
         Gdx.gl.glDisable(GL20.GL_BLEND);
     }
-
 
     public void dispose(){
         texture.dispose();
@@ -92,8 +95,8 @@ public class Nave {
         renderer.dispose();
     }
 
-    public boolean getState() {
-        return state;
-    }
     public int getVidas() { return vidas; }
+    public Rectangle getRectangle() { return rectangle; }
+
+    public void setVidas(int vidas) { this.vidas = vidas; }
 }
