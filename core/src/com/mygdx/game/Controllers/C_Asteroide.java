@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Objects.Asteroide;
+import com.mygdx.game.Objects.Bala;
 import com.mygdx.game.Objects.Nave;
 
 import java.util.ArrayList;
@@ -50,6 +51,17 @@ public class C_Asteroide {
         return out;
     }
 
+    public void checkCollision(Asteroide asteroide, Bala bala)
+    {
+        if(bala.getRectangle().overlaps(asteroide.getRectangle()) && TimeUtils.timeSinceMillis(startTime) > 500)
+        {
+            startTime = TimeUtils.millis();
+            asteroide.setState(false);
+            bala.setState(false);
+            System.out.println("Si");
+        }
+    }
+
     public void checkCollision(Nave nave, Asteroide asteroide)
     {
         if(nave.getRectangle().overlaps(asteroide.getRectangle()) && TimeUtils.timeSinceMillis(startTime) > 1500)
@@ -75,7 +87,7 @@ public class C_Asteroide {
 
     public void render(float delta, Viewport viewport, Nave nave)
     {
-        if (TimeUtils.timeSinceMillis(startTime) > 3000) {
+        if (TimeUtils.timeSinceMillis(startTime) > 2000) {
             startTime = TimeUtils.millis();
             addAsteroid(viewport);
         }
@@ -84,6 +96,10 @@ public class C_Asteroide {
         for (Asteroide a : asteroides) {
             a.render(delta);
             checkCollision(nave, a);
+            for (Bala b: nave.balas.balas)
+            {
+                checkCollision(a, b);
+            }
         }
     }
 

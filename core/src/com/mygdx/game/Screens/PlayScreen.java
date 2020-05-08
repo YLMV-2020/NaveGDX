@@ -37,7 +37,6 @@ public class PlayScreen implements Screen {
     private Nave nave;
 
     private C_Asteroide asteroides;
-    private C_Bala balas;
 
     public PlayScreen(MyGdxGame game)
     {
@@ -59,7 +58,7 @@ public class PlayScreen implements Screen {
         nave = new Nave(viewport);
         asteroides = new C_Asteroide(viewport);
 
-        balas = new C_Bala();
+
 
 
     }
@@ -88,7 +87,6 @@ public class PlayScreen implements Screen {
 
         nave.render(delta);
         asteroides.render(delta, viewport, nave);
-        balas.render(delta, viewport);
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
         {
@@ -110,11 +108,7 @@ public class PlayScreen implements Screen {
             camera.translate(180*delta,0);
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE))
-        {
-            Texture tmp = nave.getTexture();
-            balas.addBala(viewport, nave.getPosition(), new Vector2(tmp.getWidth()/2, tmp.getHeight()/2));
-        }
+
 
     }
 

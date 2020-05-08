@@ -78,7 +78,7 @@ public class Asteroide {
         rectangle.setPosition(position);
 
         renderer.begin(ShapeRenderer.ShapeType.Line);
-        renderer.setColor(new Color(0, 1, 0, 0));
+        renderer.setColor(new Color(0, 1, 0, 1));
 
         renderer.rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         renderer.end();
@@ -99,5 +99,7 @@ public class Asteroide {
 
     public boolean isState() { return state; }
     public Rectangle getRectangle() { return rectangle; }
+
+    public void setState(boolean state) { this.state = state; }
 
 }

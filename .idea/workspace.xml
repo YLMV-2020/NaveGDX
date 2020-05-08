@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6536025a-3237-44f0-a136-ab864a0aa5a2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/Controllers/C_Bala.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -15,6 +14,8 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/Controllers/C_Asteroide.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/Controllers/C_Asteroide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/Controllers/C_Bala.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/Controllers/C_Bala.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/Objects/Asteroide.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/Objects/Asteroide.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/Objects/Bala.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/Objects/Bala.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/Objects/Nave.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/Objects/Nave.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/Screens/PlayScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/Screens/PlayScreen.java" afterDir="false" />

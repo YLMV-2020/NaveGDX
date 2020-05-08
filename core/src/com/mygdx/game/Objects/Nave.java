@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Controllers.C_Bala;
 import com.mygdx.game.MyGdxGame;
 
 public class Nave {
@@ -28,19 +29,25 @@ public class Nave {
     private ShapeRenderer renderer;
     private Viewport viewport;
 
+    public C_Bala balas;
     private float velocity;
 
     public Nave(Viewport viewport)
     {
         this.viewport = viewport;
         batch = new SpriteBatch();
+
         texture = new Texture("nave.png");
         state = true;
+
         vidas = 3;
         rectangle = new Rectangle(10,10, texture.getWidth(), texture.getHeight());
+
         position = new Vector2(10,10);
         renderer = new ShapeRenderer();
+
         velocity = 180.0f;
+        balas = new C_Bala();
     }
 
     private void checkPosition()
@@ -77,7 +84,7 @@ public class Nave {
         rectangle.setPosition(position);
 
         renderer.begin(ShapeRenderer.ShapeType.Line);
-        renderer.setColor(new Color(0, 1, 0, 0));
+        renderer.setColor(new Color(0, 1, 0, 1));
 
         renderer.rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         renderer.end();
@@ -87,6 +94,13 @@ public class Nave {
 
         batch.end();
         Gdx.gl.glDisable(GL20.GL_BLEND);
+
+        balas.render(delta, viewport);
+
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE))
+        {
+            balas.addBala(viewport, position, new Vector2(texture.getWidth()/2, texture.getHeight()/2));
+        }
     }
 
     public void dispose(){

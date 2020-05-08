@@ -18,7 +18,7 @@ public class C_Bala {
     private static Integer max[] = {7, 16, 30};
     private static float power[] = {10.0f, 30.0f, 50.0f};
 
-    private ArrayList<Bala> balas;
+    public ArrayList<Bala> balas;
     public static final int TAM = 0;
 
     private long startTime = 0;
@@ -46,14 +46,6 @@ public class C_Bala {
     public static float power(int index)
     {
         return power[index];
-    }
-
-    public void checkCollision(Asteroide asteroide, Bala bala)
-    {
-        if(bala.getRectangle().overlaps(asteroide.getRectangle()) && TimeUtils.timeSinceMillis(startTime) > 1500)
-        {
-            startTime = TimeUtils.millis();
-        }
     }
 
     public void addBala(Viewport viewport, Vector2 position, Vector2 centro)
