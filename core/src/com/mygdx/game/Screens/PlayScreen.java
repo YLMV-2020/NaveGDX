@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Controllers.C_Asteroide;
 import com.mygdx.game.Controllers.C_Bala;
+import com.mygdx.game.Controllers.C_Potion;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Objects.Asteroide;
 import com.mygdx.game.Objects.Nave;
@@ -37,6 +38,9 @@ public class PlayScreen implements Screen {
     private Nave nave;
 
     private C_Asteroide asteroides;
+    private C_Potion potions;
+
+    public static int puntos;
 
     public PlayScreen(MyGdxGame game)
     {
@@ -58,8 +62,8 @@ public class PlayScreen implements Screen {
         nave = new Nave(viewport);
         asteroides = new C_Asteroide(viewport);
 
-
-
+        potions = new C_Potion(viewport);
+        puntos = 0;
 
     }
     @Override
@@ -83,33 +87,16 @@ public class PlayScreen implements Screen {
         batch.draw(texture,0,0);
 
         texto.draw(batch,"VIDAS: " + nave.getVidas() ,10, MyGdxGame.HEIGHT - 10);
+        texto.draw(batch,"BALAS: " + C_Bala.cantidad[Nave.idBala] ,10, MyGdxGame.HEIGHT - 80);
+        texto.draw(batch,"PUNTOS: " + puntos ,MyGdxGame.WIDTH - 290, MyGdxGame.HEIGHT - 10);
+
         batch.end();
 
         nave.render(delta);
         asteroides.render(delta, viewport, nave);
+        potions.render(delta, viewport, nave);
 
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
-        {
-            camera.translate(-180*delta,0);
-        }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.UP))
-        {
-            camera.translate(0,180*delta);
-        }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
-        {
-            camera.translate(0,-180*delta);
-        }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
-        {
-            camera.translate(180*delta,0);
-        }
-
-
-
+        if(!nave.isState()) game.setScreen(new PlayScreen(game));
     }
 
     @Override

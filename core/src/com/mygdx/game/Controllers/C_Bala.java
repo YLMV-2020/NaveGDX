@@ -14,12 +14,11 @@ import java.util.ArrayList;
 
 public class C_Bala {
 
-    private static String path[] = {"bullet2","asteroid2","asteroid3"};
-    private static Integer max[] = {7, 16, 30};
-    private static float power[] = {10.0f, 30.0f, 50.0f};
+    private static float power[] = {5.0f, 10.0f, 15.0f, 20.0f, 25.0f, 35.0f, 50.f};
+    public static int cantidad[] = {10, 0, 0, 0, 0, 0, 0};
 
-    public ArrayList<Bala> balas;
-    public static final int TAM = 0;
+    public static ArrayList<Bala> balas;
+    public static final int TAM = 6;
 
     private long startTime = 0;
 
@@ -29,33 +28,29 @@ public class C_Bala {
         startTime = TimeUtils.millis();
     }
 
-    public static String texture(int index)
+    public static String texture(Integer index)
     {
-        Integer aleatory = MathUtils.random(max[index] - 1) + 1;
-
         String out;
-
-        if(aleatory < 10)
-            out = path[index] + "\\" + path[index] +  "_0" + aleatory.toString() + ".png";
+        if(index < 10)
+            out =  "bullet\\bullet_0" + index.toString() + ".png";
         else
-            out = path[index] + "\\" + path[index] +  "_" + aleatory.toString() + ".png";
+            out =  "bullet\\bullet_" + index.toString() + ".png";
 
         return out;
     }
 
-    public static float power(int index)
+    public static float power(Integer index)
     {
         return power[index];
     }
 
-    public void addBala(Viewport viewport, Vector2 position, Vector2 centro)
+    public void addBala(Viewport viewport, Vector2 position)
     {
         if(TimeUtils.timeSinceMillis(startTime) > 500)
         {
             startTime = TimeUtils.millis();
-            balas.add(new Bala(viewport, position, centro));
+            balas.add(new Bala(viewport, position));
         }
-
     }
 
     private void update()
@@ -70,10 +65,8 @@ public class C_Bala {
     public void render(float delta, Viewport viewport)
     {
         update();
-
         for (Bala b : balas) {
             b.render(delta);
-            //checkCollision(asteroide, b);
         }
     }
 }

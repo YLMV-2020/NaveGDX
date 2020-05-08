@@ -21,7 +21,7 @@ public class Nave {
     private Texture texture;
 
     private boolean state;
-    private int vidas;
+    public static int vidas;
 
     private Rectangle rectangle;
     private Vector2 position;
@@ -29,8 +29,10 @@ public class Nave {
     private ShapeRenderer renderer;
     private Viewport viewport;
 
-    public C_Bala balas;
-    private float velocity;
+    private C_Bala balas;
+    public static float velocity;
+
+    public static int idBala;
 
     public Nave(Viewport viewport)
     {
@@ -48,6 +50,8 @@ public class Nave {
 
         velocity = 180.0f;
         balas = new C_Bala();
+
+        idBala = 0;
     }
 
     private void checkPosition()
@@ -61,9 +65,23 @@ public class Nave {
         if(position.y < 0) position.y = 0;
     }
 
+    private void keyPressed()
+    {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && C_Bala.cantidad[idBala] > 0)
+        {
+            C_Bala.cantidad[idBala]--;
+            balas.addBala(viewport, position);
+        }
+        System.out.println("Balas: " + C_Bala.cantidad[idBala]);
+    }
+
 
     private void update(float delta)
     {
+        if(vidas <= 0) {
+            state = false;
+        }
+
         if(Gdx.input.isKeyPressed(Input.Keys.A)) position.x -= delta * velocity;
         if(Gdx.input.isKeyPressed(Input.Keys.D)) position.x += delta * velocity;
         if(Gdx.input.isKeyPressed(Input.Keys.W)) position.y += delta * velocity;
@@ -84,7 +102,7 @@ public class Nave {
         rectangle.setPosition(position);
 
         renderer.begin(ShapeRenderer.ShapeType.Line);
-        renderer.setColor(new Color(0, 1, 0, 1));
+        renderer.setColor(new Color(0, 1, 0, 0));
 
         renderer.rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         renderer.end();
@@ -96,11 +114,7 @@ public class Nave {
         Gdx.gl.glDisable(GL20.GL_BLEND);
 
         balas.render(delta, viewport);
-
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE))
-        {
-            balas.addBala(viewport, position, new Vector2(texture.getWidth()/2, texture.getHeight()/2));
-        }
+        keyPressed();
     }
 
     public void dispose(){
@@ -113,6 +127,7 @@ public class Nave {
     public Rectangle getRectangle() { return rectangle; }
     public Texture getTexture() { return texture; }
     public Vector2 getPosition() { return position; }
+    public boolean isState() { return state; }
 
     public void setVidas(int vidas) { this.vidas = vidas; }
 

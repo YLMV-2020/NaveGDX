@@ -28,24 +28,24 @@ public class Bala {
     private ShapeRenderer renderer;
     private Viewport viewport;
 
-    private float velocity;
+    public static float velocity;
 
-    public Bala(Viewport viewport, Vector2 position, Vector2 centro)
+    public Bala(Viewport viewport, Vector2 position)
     {
         this.viewport = viewport;
         batch = new SpriteBatch();
 
-        int index = MathUtils.random(C_Bala.TAM);
-        texture = new Texture(Gdx.files.internal(C_Bala.texture(index)));
+        texture = new Texture(Gdx.files.internal(C_Bala.texture(Nave.idBala + 1)));
 
-        power = C_Bala.power(index);
+        power = C_Bala.power(Nave.idBala);
         state = true;
 
-        this.position = new Vector2(position.x + centro.x, position.y + centro.y);
+        this.position = new Vector2(position.x + 10, position.y + 50);
         rectangle = new Rectangle(10,10, texture.getWidth(), texture.getHeight());
 
         renderer = new ShapeRenderer();
         velocity = 100f;
+
     }
 
     private void checkPosition()
@@ -74,7 +74,7 @@ public class Bala {
         rectangle.setPosition(position);
 
         renderer.begin(ShapeRenderer.ShapeType.Line);
-        renderer.setColor(new Color(0, 1, 0, 1));
+        renderer.setColor(new Color(0, 1, 0, 0));
 
         renderer.rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         renderer.end();
@@ -95,6 +95,8 @@ public class Bala {
 
     public boolean isState() { return state; }
     public Rectangle getRectangle() { return rectangle; }
+    public float getPower() { return power; }
 
+    public void setPower(float power) { this.power = power; }
     public void setState(boolean state) { this.state = state; }
 }

@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Controllers.C_Asteroide;
+import com.mygdx.game.Controllers.C_Bala;
 import com.mygdx.game.MyGdxGame;
 
 public class Asteroide {
@@ -29,27 +30,35 @@ public class Asteroide {
     private ShapeRenderer renderer;
     private Viewport viewport;
 
-    private float velocity;
+    public static float velocity;
+    private int index;
+
+    private boolean destroyed;
 
     public Asteroide(Viewport viewport)
     {
         this.viewport = viewport;
         batch = new SpriteBatch();
 
-        texture = new Texture(Gdx.files.internal(C_Asteroide.textureRandom()));
+        int index = MathUtils.random(C_Asteroide.TAM);
+        texture = new Texture(Gdx.files.internal(C_Asteroide.texture(index)));
+
+        this.index = index;
+        destroyed = false;
+
+        power = C_Asteroide.power(index);
         state = true;
 
         float width = MyGdxGame.WIDTH - texture.getWidth();
         float height = MyGdxGame.HEIGHT - texture.getHeight();
 
-        power = MathUtils.random(5, 100);
         position = new Vector2(MathUtils.random(width), height);
-
         rectangle = new Rectangle(10,10, texture.getWidth(), texture.getHeight());
+
         renderer = new ShapeRenderer();
-
         velocity = 100f;
-
+        System.out.println("Index: " + index);
+        System.out.println("RES: " + power);
     }
 
     private void checkPosition()
@@ -78,7 +87,7 @@ public class Asteroide {
         rectangle.setPosition(position);
 
         renderer.begin(ShapeRenderer.ShapeType.Line);
-        renderer.setColor(new Color(0, 1, 0, 1));
+        renderer.setColor(new Color(0, 1, 0, 0));
 
         renderer.rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         renderer.end();
@@ -99,7 +108,12 @@ public class Asteroide {
 
     public boolean isState() { return state; }
     public Rectangle getRectangle() { return rectangle; }
+    public float getPower() { return power; }
+    public int getIndex() { return index; }
+    public boolean isDestroyed() { return destroyed; }
 
+    public void setDestroyed(boolean destroyed) { this.destroyed = destroyed; }
+    public void setPower(float power) { this.power = power; }
     public void setState(boolean state) { this.state = state; }
 
 }
