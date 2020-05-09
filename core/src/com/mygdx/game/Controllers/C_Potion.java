@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class C_Potion {
 
-    private static ArrayList<Potion> potions;
+    public static ArrayList<Potion> potions;
     public static final int TAM = 49;
 
     private long startTime = 0;

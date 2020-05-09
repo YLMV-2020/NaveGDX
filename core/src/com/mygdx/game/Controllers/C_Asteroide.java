@@ -22,7 +22,7 @@ public class C_Asteroide {
     private static float power[] = {15.0f, 40.0f, 90.0f};
     private static Integer point[] = {3, 5, 10};
 
-    private static ArrayList<Asteroide> asteroides;
+    public static ArrayList<Asteroide> asteroides;
     public static final int TAM = 2;
 
     private long startTime = 0;
