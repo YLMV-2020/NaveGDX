@@ -30,7 +30,7 @@ public class Asteroide {
     private ShapeRenderer renderer;
     private Viewport viewport;
 
-    public static float velocity;
+    public static float velocity = 50;
     private int index;
 
     private boolean destroyed;
@@ -56,9 +56,6 @@ public class Asteroide {
         rectangle = new Rectangle(10,10, texture.getWidth(), texture.getHeight());
 
         renderer = new ShapeRenderer();
-        velocity = 100f;
-        System.out.println("Index: " + index);
-        System.out.println("RES: " + power);
     }
 
     private void checkPosition()
@@ -71,7 +68,7 @@ public class Asteroide {
 
     private void update(float delta)
     {
-        position.y -= delta * velocity;
+        position.y -= delta * Asteroide.velocity;
         checkPosition();
     }
 

@@ -35,15 +35,37 @@ public class C_Potion {
         return out;
     }
 
+    public void openPotion(int index)
+    {
+        int potion = index / 5;
+        int cantidad = index % 5 + 1;
 
+        if(potion >=0 && potion <=6)
+        {
+            C_Bala.cantidad[potion] += cantidad;
+        }
+
+        switch (potion)
+        {
+            case 7:
+                Nave.velocity += cantidad * 50;
+                break;
+            case 8:
+                Nave.vidas += cantidad;
+                break;
+            case 9:
+                Nave.velocity -= cantidad * 10;
+        }
+    }
 
     public void checkCollision(Nave nave, Potion potion)
     {
-        if(nave.getRectangle().overlaps(potion.getRectangle()) && TimeUtils.timeSinceMillis(startTime) > 1500)
+        if(nave.getRectangle().overlaps(potion.getRectangle()) && TimeUtils.timeSinceMillis(startTime) > 200)
         {
+            openPotion(potion.getIndex());
             startTime = TimeUtils.millis();
             potion.setCollision(true);
-            //nave.setVidas(nave.getVidas() - 1);
+            Nave.idBala = C_Bala.sort();
         }
     }
 
@@ -62,7 +84,6 @@ public class C_Potion {
             }
             else if(potions.get(i).isCollision())
             {
-                //PlayScreen.puntos+= point[potions.get(i).getIndex()];
                 potions.remove(i);
             }
         }
@@ -70,7 +91,7 @@ public class C_Potion {
 
     public void render(float delta, Viewport viewport, Nave nave)
     {
-        if (TimeUtils.timeSinceMillis(startTime) > 10000) {
+        if (TimeUtils.timeSinceMillis(startTime) > 4000) {
             startTime = TimeUtils.millis();
             addPotion(viewport);
         }
@@ -82,5 +103,4 @@ public class C_Potion {
             checkCollision(nave, p);
         }
     }
-
 }

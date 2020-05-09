@@ -28,8 +28,6 @@ public class Bala {
     private ShapeRenderer renderer;
     private Viewport viewport;
 
-    public static float velocity;
-
     public Bala(Viewport viewport, Vector2 position)
     {
         this.viewport = viewport;
@@ -44,7 +42,6 @@ public class Bala {
         rectangle = new Rectangle(10,10, texture.getWidth(), texture.getHeight());
 
         renderer = new ShapeRenderer();
-        velocity = 100f;
 
     }
 
@@ -58,7 +55,7 @@ public class Bala {
 
     private void update(float delta)
     {
-        position.y += delta * velocity;
+        position.y += delta * Nave.velocity;
         checkPosition();
     }
 

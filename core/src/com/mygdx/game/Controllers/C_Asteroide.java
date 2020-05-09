@@ -26,6 +26,7 @@ public class C_Asteroide {
     public static final int TAM = 2;
 
     private long startTime = 0;
+    public static float time;
 
     public C_Asteroide(Viewport viewport)
     {
@@ -37,6 +38,7 @@ public class C_Asteroide {
         }
 
         startTime = TimeUtils.millis();
+        time = 4000;
     }
 
     public static String texture(int index)
@@ -65,8 +67,6 @@ public class C_Asteroide {
             float powerB = bala.getPower();
 
             powerA = powerA - powerB;
-
-            System.out.println("R: " + powerA);
 
             if(powerA <= 0)
             {
@@ -112,11 +112,10 @@ public class C_Asteroide {
 
     public void render(float delta, Viewport viewport, Nave nave)
     {
-        if (TimeUtils.timeSinceMillis(startTime) > 2000) {
+        if (TimeUtils.timeSinceMillis(startTime) > time) {
             startTime = TimeUtils.millis();
             addAsteroid(viewport);
         }
-
         update();
 
         for (Asteroide a : asteroides) {
@@ -128,5 +127,4 @@ public class C_Asteroide {
             }
         }
     }
-
 }

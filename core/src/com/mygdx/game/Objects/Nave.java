@@ -12,8 +12,10 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Controllers.C_Asteroide;
 import com.mygdx.game.Controllers.C_Bala;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.Screens.PlayScreen;
 
 public class Nave {
 
@@ -71,8 +73,8 @@ public class Nave {
         {
             C_Bala.cantidad[idBala]--;
             balas.addBala(viewport, position);
+            Nave.idBala = C_Bala.sort();
         }
-        System.out.println("Balas: " + C_Bala.cantidad[idBala]);
     }
 
 

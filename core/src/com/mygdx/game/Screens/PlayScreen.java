@@ -41,6 +41,7 @@ public class PlayScreen implements Screen {
     private C_Potion potions;
 
     public static int puntos;
+    private long startTime = 0;
 
     public PlayScreen(MyGdxGame game)
     {
@@ -65,10 +66,36 @@ public class PlayScreen implements Screen {
         potions = new C_Potion(viewport);
         puntos = 0;
 
+        startTime = TimeUtils.millis();
+
     }
     @Override
     public void show() {
 
+    }
+
+    private void update()
+    {
+        if(!nave.isState())
+        {
+            Nave.vidas = 3;
+            puntos = 0;
+            game.setScreen(new PlayScreen(new MyGdxGame()));
+        }
+
+        if (TimeUtils.timeSinceMillis(startTime) > 20000) {
+            System.out.println("SIII");
+            startTime = TimeUtils.millis();
+
+            if(Asteroide.velocity < 500)
+                Asteroide.velocity += 50;
+
+            if(C_Asteroide.time > 1000)
+                C_Asteroide.time -= 500;
+
+            System.out.println("vel: " + Asteroide.velocity);
+            System.out.println("time: " + C_Asteroide.time);
+        }
     }
 
     @Override
@@ -79,6 +106,7 @@ public class PlayScreen implements Screen {
 
         viewport.apply();
         camera.update();
+        update();
 
         renderer.setProjectionMatrix(viewport.getCamera().combined);
         batch.setProjectionMatrix(viewport.getCamera().combined);
@@ -96,7 +124,8 @@ public class PlayScreen implements Screen {
         asteroides.render(delta, viewport, nave);
         potions.render(delta, viewport, nave);
 
-        if(!nave.isState()) game.setScreen(new PlayScreen(game));
+
+
     }
 
     @Override

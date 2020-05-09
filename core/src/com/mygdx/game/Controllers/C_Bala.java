@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class C_Bala {
 
-    private static float power[] = {5.0f, 10.0f, 15.0f, 20.0f, 25.0f, 35.0f, 50.f};
+    private static float power[] = {5.0f, 10.0f, 15.0f, 20.0f, 30.0f, 40.0f, 90.f};
     public static int cantidad[] = {10, 0, 0, 0, 0, 0, 0};
 
     public static ArrayList<Bala> balas;
@@ -46,11 +46,22 @@ public class C_Bala {
 
     public void addBala(Viewport viewport, Vector2 position)
     {
-        if(TimeUtils.timeSinceMillis(startTime) > 500)
+        if(TimeUtils.timeSinceMillis(startTime) > 100)
         {
             startTime = TimeUtils.millis();
             balas.add(new Bala(viewport, position));
         }
+    }
+
+    public static int sort()
+    {
+        int index = 0;
+        for(int i = 0; i <= TAM; i++)
+        {
+            if(cantidad[i] > 0 && power[i] > power[index])
+                index = i;
+        }
+        return index;
     }
 
     private void update()
