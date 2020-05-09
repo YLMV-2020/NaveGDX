@@ -97,7 +97,7 @@ public class PlayScreen implements Screen {
                 C_Asteroide.time -= 500;
         }
 
-        if(puntos >= 3)
+        if(puntos >= 200)
         {
             texture = new Texture("winner.png");
             C_Asteroide.asteroides.clear();
