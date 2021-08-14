@@ -1,4 +1,4 @@
-# Juego de naves GDX
+# Nave GDX
 
 _Proyecto personal_
 
