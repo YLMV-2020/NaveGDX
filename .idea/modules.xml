@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LibGDX.iml" filepath="$PROJECT_DIR$/LibGDX.iml" group="LibGDX" />
-      <module fileurl="file://$PROJECT_DIR$/android/android.iml" filepath="$PROJECT_DIR$/android/android.iml" group="LibGDX/android" />
-      <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" group="LibGDX/core" />
-      <module fileurl="file://$PROJECT_DIR$/desktop/desktop.iml" filepath="$PROJECT_DIR$/desktop/desktop.iml" group="LibGDX/desktop" />
-      <module fileurl="file://$PROJECT_DIR$/ios/ios.iml" filepath="$PROJECT_DIR$/ios/ios.iml" group="LibGDX/ios" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Juego-de-las-naves-LibGDX.iml" filepath="$PROJECT_DIR$/.idea/modules/Juego-de-las-naves-LibGDX.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android/Juego-de-las-naves-LibGDX.android.iml" filepath="$PROJECT_DIR$/.idea/modules/android/Juego-de-las-naves-LibGDX.android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/Juego-de-las-naves-LibGDX.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/Juego-de-las-naves-LibGDX.core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/desktop/Juego-de-las-naves-LibGDX.desktop.iml" filepath="$PROJECT_DIR$/.idea/modules/desktop/Juego-de-las-naves-LibGDX.desktop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ios/Juego-de-las-naves-LibGDX.ios.iml" filepath="$PROJECT_DIR$/.idea/modules/ios/Juego-de-las-naves-LibGDX.ios.iml" />
     </modules>
   </component>
 </project>

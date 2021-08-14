@@ -1,0 +1,10 @@
+com/mygdx/game/R.java
+ com.mygdx.game.R
+ com.mygdx.game.R$color
+ com.mygdx.game.R$drawable
+ com.mygdx.game.R$string
+ com.mygdx.game.R$style
+com/mygdx/game/AndroidLauncher.java
+ com.mygdx.game.AndroidLauncher
+com/mygdx/game/BuildConfig.java
+ com.mygdx.game.BuildConfig

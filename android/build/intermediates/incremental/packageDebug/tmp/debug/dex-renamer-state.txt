@@ -1,4 +1,4 @@
-#Fri May 08 14:32:41 COT 2020
-base.0=C\:\\Users\\yordy\\Desktop\\Cursos\\Android Studio\\LibGDX\\android\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
-path.0=classes.dex
+#Sat Aug 14 15:44:19 CDT 2021
+base.0=C\:\\Users\\yordy\\Desktop\\Materiales\\Cursos\\Unity\\Juego-de-las-naves-LibGDX\\android\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
 renamed.0=classes.dex
+path.0=classes.dex
